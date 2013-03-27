@@ -1,0 +1,11 @@
+*{
+    position: relative;
+}
+
+html, body{
+    position: static;
+    border: none;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+}
