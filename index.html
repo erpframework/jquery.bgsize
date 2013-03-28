@@ -1,78 +1,41 @@
 <!DOCTYPE html>
 <html class="no-js">
     <head>
-        <title>CrossBgSize</title>
+        <title>jquery.bgsize</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/initialize.css" />
-        <link rel="stylesheet" type="text/css" href="css/cbgs.css" />
         <link rel="stylesheet" type="text/css" href="css/demos.css" />
         <script src="js/modernizr.custom.js"></script>
         <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.bgsize.js"></script>
         <script>
-            function cbgs_bounds(el) {
-                var $el = $(el);
-                var itemw = $el.width();
-                var itemh = $el.height();
-                var parent = $el.parent();
-                var containerWidth = parent.width();
-                var containerHeight = parent.height();
-
-                // calculate ratio
-                    var ratio = itemh / itemw;
-
-                    // calculate new size
-                    var newheight = 0, newwidth = 0;
-
-                    if ((containerHeight / containerWidth) > ratio) {
-                        newheight = containerHeight;
-                        newwidth = Math.round(containerHeight / ratio);
-                    } else {
-                        newheight = Math.round(containerWidth * ratio);
-                        newwidth = containerWidth;
-                    }
-
-                    // calculate new left and top position
-                    // superbg not present
-                    var newleft = Math.round((containerWidth - newwidth) / 2);
-                    var newtop = Math.round((containerHeight - newheight) / 2);
-                    return {"width": newwidth, "height": newheight, "left": newleft, "top": newtop};
-                }
-                
-            function cbgs_cover(el){
-                var $el = $(el);
-                $el.css($.extend({}, cbgs_bounds($el), {
-                    "position":"absolute",
-                    "maxWidth":"none",
-                    "minWidth":"none",
-                    "display":"block"
-                }));
-            }
-            
-            function cbgs_refresh(){
-                $('.cbgs-img').each(function(){
-                    cbgs_cover(this);
-                });
-            }
             $(function() {
-                $('.backgroundsize .cbgs-container.cbgs-emulate-fallback').addClass('cbgs-fallback-container').each(function() {
-                    var $this = $(this);
-                    $this.prepend($('<img>', {
-                        'class': 'cbgs-img',
-                        'src': $this.attr("data-bg-src")
-                    }));
-                });
-                
-                $(window).bind("load", cbgs_refresh).bind("resize", cbgs_refresh);
+                $('.no-backgroundsize .bgs-container, .backgroundsize .bgs-container.emulate-fallback').bgsize();
             });
         </script>
     </head>
     <body>
+        <div class="bgfull bgs-container emulate-fallback"></div>
         <div class="container">
-            Cross-browser Background Size Plugin
-
-            <div id="cbgs-container-1" class="cbgs-container cbgs-emulate-fallback" data-bg-src="img/chameleon-01.jpg" data-bg-size="cover"></div>
+            <h1>Cross-browser Background Size Plugin</h1>
+            <h2>Features</h2>
+            <ul>
+                <li>Responsive</li>
+                <li>No extra markup</li>
+                <li>CSS3 with JS fallback</li>
+            </ul>
+            <h2>To-Do</h2>
+            <ul>
+                <li>Percent and px background-size emulation</li>
+                <li>background-position emulation</li>
+                <li>CSS3 with JS fallback</li>
+            </ul>
+            <h2>CSS3 vs JS fallback</h2>
+            <div class="inl bg1 bgs-container"></div>
+            <div class="inl bg1 bgs-container emulate-fallback"></div>
             <br /><br />
-            <div id="cbgs-container-1" class="cbgs-container" data-bg-src="img/chameleon-01.jpg" data-bg-size="cover"></div>
+            <div class="inl bg2 bgs-container"></div>
+            <div class="inl bg2 bgs-container emulate-fallback"></div>
         </div>
     </body>
 </html>
