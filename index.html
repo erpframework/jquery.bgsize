@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js">
     <head>
-        <title>jquery.bgsize</title>
+        <title>jquery.bgSize</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/initialize.css" />
         <link rel="stylesheet" type="text/css" href="css/demos.css" />
@@ -10,25 +10,20 @@
         <script src="js/jquery.bgsize.js"></script>
         <script>
             $(function() {
-                $('.no-backgroundsize .bgs-container, .backgroundsize .bgs-container.emulate-fallback').bgsize();
+                $('.no-backgroundsize .bgs-container, .backgroundsize .bgs-container.emulate-fallback').bgSize();
             });
         </script>
     </head>
     <body>
         <div class="bgfull bgs-container emulate-fallback"></div>
         <div class="container">
-            <h1>Cross-browser Background Size Plugin</h1>
+            <h1>jQuery.bgSize Plugin</h1>
+            <p>Bringing cross-browser compatibility for background-size cover and contain modes</p>
             <h2>Features</h2>
             <ul>
                 <li>Responsive</li>
-                <li>No extra markup</li>
-                <li>CSS3 with JS fallback</li>
-            </ul>
-            <h2>To-Do</h2>
-            <ul>
-                <li>Percent and px background-size emulation</li>
-                <li>background-position emulation</li>
-                <li>CSS3 with JS fallback</li>
+                <li>CSS3 with JS fallback (with the power of modernizr)</li>
+                <li>No extra markup than a JS initialization</li>
             </ul>
             <h2>CSS3 vs JS fallback</h2>
             <div class="inl bg1 bgs-container"></div>

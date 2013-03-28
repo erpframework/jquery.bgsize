@@ -1,6 +1,10 @@
 /**
  * --------------------------------------------------------------------
- * jQuery BgSize plugin
+ * jQuery.bgSize plugin
+ * 
+ * Version: v1.0
+ * Author: @xaguilars
+ * Url: https://github.com/xaguilars/jquery.bgSize
  */
 
 ;
@@ -20,11 +24,11 @@
     var _helpers = {
         "init": function(options) {
             var $this = $(this);
-            var $o = $this.data("bgsize");
+            var $o = $this.data("bgSize");
 
             if (typeof $o !== 'object') {
                 $o = $.extend({}, _defaults, options);
-                $this.data("bgsize", $o);
+                $this.data("bgSize", $o);
                 $this.each(function() {
                     var $container = $(this);
                     var $img = $container.find("> ." + $o.imgClassName);
@@ -34,21 +38,21 @@
                         console.log($info);
                         var $img = $('<img />').addClass($o.imgClassName).attr({
                             'src': $info.backgroundImage,
-                            "data-bgsize": $info.backgroundSize
+                            "data-bgSize": $info.backgroundSize
                         });
                         $container.css("backgroundImage", "none").prepend($img);
                     }
                 });
 
                 if ($o.bindWindowResize === true) {
-                    $(window).bind('resize.bgsize', function() {
+                    $(window).bind('resize.bgSize', function() {
                         _helpers["refresh"]($this);
                     })
                 }
                 $(window).load(function() {
                     $(function() {
                         _helpers["refresh"]($this);
-                        $this.trigger("init.bgsize");
+                        $this.trigger("init.bgSize");
                     });
                 });
             } else {
@@ -60,14 +64,14 @@
         },
         "refresh": function($this, $o) {
             $this = $this || $(this);
-            $o = $o || $this.data("bgsize");
+            $o = $o || $this.data("bgSize");
 
             return $this.each(function() {
                 var $container = $(this);
                 var $img = $container.find("> ." + $o.imgClassName);
                 if ($img.length !== 0) {
                     //create img
-                    var $bgs = $img.attr("data-bgsize");
+                    var $bgs = $img.attr("data-bgSize");
                     if ($bgs === "contain") {
                         $img.css($.extend({}, _helpers["bounds"]["contain"]($img), $o.baseCss));
                     } else {
@@ -176,14 +180,14 @@
         }
     };
 
-    $.fn.bgsize = function(param) {
+    $.fn.bgSize = function(param) {
         // Method calling logic
         if (_helpers[param]) {
             return _helpers[param].apply(this, Array.prototype.slice.call(arguments, 1));
         } else if (typeof param === 'object' || !param) {
             return _helpers.init.apply(this, arguments);
         } else {
-            $.error('Method ' + param + ' does not exist on jQuery.bgsize');
+            $.error('Method ' + param + ' does not exist on jQuery.bgSize');
             return false;
         }
     };
