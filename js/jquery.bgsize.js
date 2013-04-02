@@ -11,13 +11,19 @@
 (function($, undefined) {
     "use strict";
     var _defaults = {
-        "imgClassName": "bgs-img",
-        "bindWindowResize": true,
+        "bindResize": true,
+        "bindOrientationChange": true,
         "baseCss": {
             "position": "absolute",
             "maxWidth": "none",
             "minWidth": "none",
             "display": "block"
+        },
+        "classes" : {
+            "fallback" : "bgs-fallback",
+            "fallbackImg" : "bgs-img",
+            "cover":"bgs-cover",
+            "contain":"bgs-contain"
         }
     };
 
@@ -28,15 +34,16 @@
 
             if (typeof $o !== 'object') {
                 $o = $.extend({}, _defaults, options);
+                $this.addClass($o.classes.fallback);
                 $this.data("bgSize", $o);
                 $this.each(function() {
                     var $container = $(this);
-                    var $img = $container.find("> ." + $o.imgClassName);
+                    var $img = $container.find("> ." + $o.classes.fallbackImg);
                     if ($img.length === 0) {
                         //create img
-                        var $info = _helpers["info"]($container);
-                        console.log($info);
-                        var $img = $('<img />').addClass($o.imgClassName).attr({
+                        var $info = _helpers["info"]($container, $o);
+                        //console.log($info);
+                        var $img = $('<img />').addClass($o.classes.fallbackImg).attr({
                             'src': $info.backgroundImage,
                             "data-bgSize": $info.backgroundSize
                         });
@@ -44,8 +51,14 @@
                     }
                 });
 
-                if ($o.bindWindowResize === true) {
+                if ($o.bindResize === true) {
                     $(window).bind('resize.bgSize', function() {
+                        _helpers["refresh"]($this);
+                    })
+                }
+
+                if ($o.bindOrientationChange === true) {
+                    $(window).bind('orientationchange.bgSize', function() {
                         _helpers["refresh"]($this);
                     })
                 }
@@ -68,7 +81,7 @@
 
             return $this.each(function() {
                 var $container = $(this);
-                var $img = $container.find("> ." + $o.imgClassName);
+                var $img = $container.find("> ." + $o.classes.fallbackImg);
                 if ($img.length !== 0) {
                     //create img
                     var $bgs = $img.attr("data-bgSize");
@@ -80,17 +93,16 @@
                 }
             });
         },
-        "info": function($this) {
+        "info": function($this, $o) {
             $this = $this || $(this);
+            $o = $o || $this.data("bgSize");
             var bgImg = $this.css('backgroundImage');
-            // ^ Either "none" or url("...urlhere..")
             bgImg = bgImg.match(/^url\(['"]?(.+)["']?\)$/);
             bgImg = bgImg ? bgImg[1] : "";
-
-            var bgSize = $this.css('backgroundSize');
+            var bgSize = $this.hasClass($o.classes.cover) ? "cover" : ($this.hasClass($o.classes.contain) ? "contain" : $this.css('backgroundSize'));
 
             return {
-                "backgroundImage": bgImg,
+                "backgroundImage": bgImg.replace(/\"$/,""),
                 "backgroundSize": bgSize
             }
         },

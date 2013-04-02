@@ -49,14 +49,44 @@ a img{
     width:20%;
     height:150px;
     background-image: url(../img/chameleon-01.jpg);
-/*    -webkit-filter:grayscale(100%);
-    opacity:0.1;*/
 }
 .bg2{
     width:40%;
     height:450px;
-    background-size:contain;
     background-image: url(../img/chameleon-08.jpg);
-/*    -webkit-filter:grayscale(100%);
-    opacity:0.1;*/
+}
+
+.bgs-cover{
+    background-size:cover;
+}
+
+.bgs-contain{
+    background-size:contain;
+}
+
+
+.bgs-container:after{
+    position: absolute;
+    top:0;
+    right:0;
+    padding:4px 8px;
+    color:#000;
+    background: #ffffcc;
+    text-align: center;
+    text-shadow: none;
+    font-size: 11px;
+    z-index: 10;
+}
+
+.bgs-container:after{
+    content: "css3";
+}
+
+.bgs-container.bgs-fallback:after{
+    content: "js";
+    background: #ffcccc;
+}
+
+.bgs-container.bgs-fallback{
+    
 }

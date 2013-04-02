@@ -10,12 +10,12 @@
         <script src="js/jquery.bgsize.js"></script>
         <script>
             $(function() {
-                $('.no-backgroundsize .bgs-container, .backgroundsize .bgs-container.emulate-fallback').bgSize();
+                $('.no-backgroundsize .bgs-container, .backgroundsize .bgs-container.bgs-fallback').bgSize();
             });
         </script>
     </head>
     <body>
-        <div class="bgfull bgs-container emulate-fallback"></div>
+        <div class="bgfull bgs-container bgs-fallback"></div>
         <div class="container">
             <h1>jQuery.bgSize Plugin</h1>
             <p>Bringing cross-browser compatibility for background-size cover and contain modes</p>
@@ -26,11 +26,11 @@
                 <li>No extra markup than a JS initialization</li>
             </ul>
             <h2>CSS3 vs JS fallback</h2>
-            <div class="inl bg1 bgs-container"></div>
-            <div class="inl bg1 bgs-container emulate-fallback"></div>
+            <div class="inl bg1 bgs-container bgs-cover"></div>
+            <div class="inl bg1 bgs-container bgs-cover bgs-fallback"></div>
             <br /><br />
-            <div class="inl bg2 bgs-container"></div>
-            <div class="inl bg2 bgs-container emulate-fallback"></div>
+            <div class="inl bg2 bgs-container bgs-contain"></div>
+            <div class="inl bg2 bgs-container bgs-contain bgs-fallback"></div>
         </div>
     </body>
 </html>

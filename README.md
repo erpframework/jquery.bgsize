@@ -7,7 +7,7 @@ Features
 ------------
 * Responsive
 * CSS3 with JS fallback (with the power of modernizr)
-* No extra markup than a JS initialization
+* No extra markup than a JS initialization and some classes
 
 To-Do
 ------------
