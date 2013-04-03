@@ -47,10 +47,11 @@
                             'src': $info.backgroundImage,
                             "data-bgSize": $info.backgroundSize
                         });
+                        $img.hide();
                         $container.css("backgroundImage", "none").prepend($img);
                     }
                 });
-
+                
                 if ($o.bindResize === true) {
                     $(window).bind('resize.bgSize', function() {
                         _helpers["refresh"]($this);
@@ -62,11 +63,13 @@
                         _helpers["refresh"]($this);
                     })
                 }
+                
+                $(function() {
+                    _helpers["refresh"]($this);
+                });
                 $(window).load(function() {
-                    $(function() {
-                        _helpers["refresh"]($this);
-                        $this.trigger("init.bgSize");
-                    });
+                    _helpers["refresh"]($this);
+                    $this.trigger("init.bgSize");
                 });
             } else {
                 //just refresh
@@ -84,6 +87,7 @@
                 var $img = $container.find("> ." + $o.classes.fallbackImg);
                 if ($img.length !== 0) {
                     //create img
+                    $img.show();
                     var $bgs = $img.attr("data-bgSize");
                     if ($bgs === "contain") {
                         $img.css($.extend({}, _helpers["bounds"]["contain"]($img), $o.baseCss));
@@ -119,8 +123,8 @@
                     $el.attr("data-ratio", ratio);
                 }
                 var parent = $el.parent();
-                var containerWidth = parent.width();
-                var containerHeight = parent.height();
+                var containerWidth = parent.outerWidth(false); //false = do not include margin
+                var containerHeight = parent.outerHeight(false);
 
                 // calculate new size
                 var newheight = 0, newwidth = 0;
@@ -155,8 +159,8 @@
                     newwidth = $el.attr("data-origw");
                 }
                 var parent = $el.parent();
-                var containerWidth = parent.width();
-                var containerHeight = parent.height();
+                var containerWidth = parent.outerWidth(false); //false = do not include margin
+                var containerHeight = parent.outerHeight(false);
 
                 // calculate new size
                 
