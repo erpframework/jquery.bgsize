@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js">
     <head>
-        <title>jquery.bgSize</title>
+        <title>jquery.bgsize</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/initialize.css" />
         <link rel="stylesheet" type="text/css" href="css/demos.css" />
@@ -10,27 +10,27 @@
         <script src="js/jquery.bgsize.js"></script>
         <script>
             $(function() {
-                $('.no-backgroundsize .bgs-container, .backgroundsize .bgs-container.bgs-fallback').bgSize();
+                $('.no-backgroundsize .pic-container, .backgroundsize .pic-container.bgsize-fallback').bgsize();
             });
         </script>
     </head>
     <body>
-        <div class="bgfull bgs-container bgs-fallback"></div>
+        <div class="bgfull pic-container bgsize-fallback"></div>
         <div class="container">
-            <h1>jQuery.bgSize Plugin</h1>
-            <p>Bringing cross-browser compatibility for background-size cover and contain modes</p>
+            <h1>jQuery.bgsize Plugin</h1>
+            <p>Bringing cross-browser compatibility for background-size 'cover' and 'contain' modes</p>
             <h2>Features</h2>
             <ul>
                 <li>Responsive</li>
-                <li>CSS3 with JS fallback (with the power of modernizr)</li>
+                <li>CSS3 with JS fallback</li>
                 <li>No extra markup than a JS initialization</li>
             </ul>
             <h2>CSS3 vs JS fallback</h2>
-            <div class="inl bg1 bgs-container bgs-cover"></div>
-            <div class="inl bg1 bgs-container bgs-cover bgs-fallback"></div>
+            <div class="inl bg1 pic-container"></div>
+            <div class="inl bg1 pic-container bgsize-fallback"></div>
             <br /><br />
-            <div class="inl bg2 bgs-container bgs-contain"></div>
-            <div class="inl bg2 bgs-container bgs-contain bgs-fallback"></div>
+            <div class="inl bg2 pic-container" data-bgsize-mode="contain"></div>
+            <div class="inl bg2 pic-container bgsize-fallback" data-bgsize-mode="contain"></div>
         </div>
     </body>
 </html>

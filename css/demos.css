@@ -21,17 +21,21 @@ a img{
     margin: 40px auto;
 }
 
-.bgs-container{
+.pic-container{
     background-position: center center;
     background-repeat: no-repeat;
     overflow: hidden;
-    background-size:cover;
+    background-size:cover; /* cover by default*/
+}
+
+.pic-container[data-bgsize-mode="contain"]{
+    background-size:contain;
 }
 
 .inl{
     display:inline-block;
 }
-.bgs-container.inl{
+.pic-container.inl{
     border:2px solid #fff;
     margin:0 10px 0 0;
 }
@@ -56,16 +60,8 @@ a img{
     background-image: url(../img/chameleon-08.jpg);
 }
 
-.bgs-cover{
-    background-size:cover;
-}
 
-.bgs-contain{
-    background-size:contain;
-}
-
-
-.bgs-container:after{
+.pic-container:after{
     position: absolute;
     top:0;
     right:0;
@@ -78,15 +74,15 @@ a img{
     z-index: 10;
 }
 
-.bgs-container:after{
+.pic-container:after{
     content: "css3";
 }
 
-.bgs-container.bgs-fallback:after{
+.pic-container.bgsize-fallback:after{
     content: "js";
     background: #ffcccc;
 }
 
-.bgs-container.bgs-fallback{
-    
+.pic-container.bgsize-fallback{
+
 }
