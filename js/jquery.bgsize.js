@@ -2,9 +2,9 @@
  * --------------------------------------------------------------------
  * jQuery.bgsize plugin
  * 
- * Version: v1.0
- * Author: @xaguilars
- * Url: https://github.com/xaguilars/jquery.bgsize
+ * Version: v1.0.1
+ * Author: @mjaalnir
+ * Url: http://mjaalnir.github.com/jquery.bgsize/
  */
 
 ;
