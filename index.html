@@ -10,7 +10,10 @@
             $(function() {
                 var hasBgSizeSupport = (!('backgroundSize' in document.body.style || 'MozBackgroundSize' in document.body.style)) === false;
                 if(!hasBgSizeSupport){
-                    $('.test').bgsize(); // all elements that have background-size
+                     // elements having background-size 'cover'
+                    $('.test:not(.bg3)').bgsize();
+                     // elements having background-size 'contain'
+                    $('.test.bg3').bgsize({mode:'contain'});
                 }else{
                     $('.test.force-fallback').bgsize(); // only the elements that we want to force to use the plugin
                 }

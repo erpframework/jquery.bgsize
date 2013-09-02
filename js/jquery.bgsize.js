@@ -54,13 +54,13 @@
                 if ($o.detectWindowResize === true) {
                     $(window).bind('resize.bgsize', function() {
                         _helpers["refresh"]($this);
-                    })
+                    });
                 }
 
                 if ($o.detectOrientationChange === true) {
                     $(window).bind('orientationchange.bgsize', function() {
                         _helpers["refresh"]($this);
-                    })
+                    });
                 }
 
                 $(window).load(function() {
@@ -117,7 +117,7 @@
             return {
                 "backgroundImage": bgImg.replace(/\"$/, ""),
                 "backgroundSize": bgsize
-            }
+            };
         },
         "bounds": {
             "cover": function(el) {
