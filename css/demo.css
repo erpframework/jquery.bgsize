@@ -1,10 +1,19 @@
+*{
+    position: relative;
+}
+
 html, body{
+    position: static;
+    border: none;
+    background: transparent;
+    margin: 0;
+    padding: 0;
     width:100%;
     height:100%;
     font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
     font-size: 14px;
-    color:#222;
-    text-shadow:1px 1px 1px #fff;
+    color:#fff;
+    text-shadow:1px 1px 1px #222;
 }
 
 a, a:hover{
@@ -16,30 +25,46 @@ a img{
     border: none;
 }
 
+.btn {
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333333;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #f2f2f2;
+    border:none;
+    text-shadow:none;
+}
+
+.btn:hover{
+    color: #fff;
+    background: #aaa;
+}
+
 .container{
     width: 70%;
     margin: 40px auto;
 }
 
-.pic-container{
+.test{
     background-position: center center;
     background-repeat: no-repeat;
     overflow: hidden;
     background-size:cover; /* cover by default*/
 }
 
-.pic-container[data-bgsize-mode="contain"]{
-    background-size:contain;
-}
-
-.inl{
-    display:inline-block;
-}
-.pic-container.inl{
+.container .test{
     border:2px solid #fff;
     margin:0 10px 0 0;
+    display:inline-block;
+    overflow: hidden;
 }
-.bgfull{
+
+.bg1{
     position: fixed;
     z-index: -1;
     top:0;
@@ -47,21 +72,23 @@ a img{
     right:0;
     bottom:0;
     background-color:#ddd;
-    background-image: url(../img/chameleon-04.jpg);
+    background-image: url(../img/cham03.jpg);
 }
-.bg1{
-    width:20%;
-    height:150px;
-    background-image: url(../img/chameleon-01.jpg);
-}
+
 .bg2{
-    width:40%;
-    height:450px;
-    background-image: url(../img/chameleon-08.jpg);
+    width:25%;
+    height:150px;
+    background-image: url(../img/cham02.jpg);
 }
 
+.bg3{
+    width:35%;
+    height:450px;
+    background-image: url(../img/cham01.jpg);
+    background-size:contain;
+}
 
-.pic-container:after{
+.test:after{
     position: absolute;
     top:0;
     right:0;
@@ -74,15 +101,11 @@ a img{
     z-index: 10;
 }
 
-.pic-container:after{
+.test:after{
     content: "css3";
 }
 
-.pic-container.bgsize-fallback:after{
+.test.bgsize-fallback:after{
     content: "js";
     background: #ffcccc;
-}
-
-.pic-container.bgsize-fallback{
-
 }

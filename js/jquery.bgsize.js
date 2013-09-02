@@ -10,9 +10,11 @@
 ;
 (function($, undefined) {
     "use strict";
+
     var _defaults = {
-        "bindResize": true,
-        "bindOrientationChange": true,
+        "mode": null,
+        "detectWindowResize": true,
+        "detectOrientationChange": true,
         "baseCss": {
             "position": "absolute",
             "maxWidth": "none",
@@ -40,23 +42,22 @@
                     if ($img.length === 0) {
                         //create img
                         var $info = _helpers["info"]($container, $o);
-                        //console.log($info);
+
                         var $img = $('<img />').addClass($o.classes.fallbackImg).attr({
-                            'src': $info.backgroundImage,
-                            "data-bgsize-mode": $info.backgroundSize
+                            'src': $info.backgroundImage
                         });
                         $img.hide();
                         $container.css("backgroundImage", "none").prepend($img);
                     }
                 });
 
-                if ($o.bindResize === true) {
+                if ($o.detectWindowResize === true) {
                     $(window).bind('resize.bgsize', function() {
                         _helpers["refresh"]($this);
                     })
                 }
 
-                if ($o.bindOrientationChange === true) {
+                if ($o.detectOrientationChange === true) {
                     $(window).bind('orientationchange.bgsize', function() {
                         _helpers["refresh"]($this);
                     })
@@ -65,6 +66,7 @@
                 $(window).load(function() {
                     $("html").addClass("window-loaded");
                     _helpers["refresh"]($this);
+                    $this.hide(1).show(1); // force repaint
                     $this.trigger("init.bgsize");
                 });
 
@@ -89,8 +91,10 @@
                 if ($img.length !== 0) {
                     //create img
                     $img.show();
-                    var $bgs = $img.attr("data-bgsize-mode");
-                    if ($bgs === "contain") {
+
+                    var bgsMode = $o.mode ? $o.mode : $container.css('backgroundSize');
+
+                    if (bgsMode === "contain") {
                         $img.css($.extend({}, _helpers["bounds"]["contain"]($img), $o.baseCss));
                     } else {
                         $img.css($.extend({}, _helpers["bounds"]["cover"]($img), $o.baseCss));
@@ -101,15 +105,10 @@
         "info": function($this, $o) {
             $this = $this || $(this);
             $o = $o || $this.data("bgsize");
-            var bgImg = $this.attr('data-bgsize-image');// $this.css('backgroundImage');
+            var bgImg = $this.css('backgroundImage').match(/^url\(['"]?(.+)["']?\)$/);
+            bgImg = bgImg ? bgImg[1] : "";
 
-            if (!bgImg) {
-                bgImg = $this.css('backgroundImage');
-                bgImg = bgImg.match(/^url\(['"]?(.+)["']?\)$/);
-                bgImg = bgImg ? bgImg[1] : "";
-            }
-
-            var bgsize = $this.attr('data-bgsize-mode');
+            var bgsize = $o.mode;
 
             if (!bgsize) {
                 // browsers that does not support background-size CSS property won't read the value
@@ -208,10 +207,10 @@
 
     $.fn.bgsize = function(param) {
         // Method calling logic
-        if (_helpers[param]) {
-            return _helpers[param].apply(this, Array.prototype.slice.call(arguments, 1));
-        } else if (typeof param === 'object' || !param) {
+        if (typeof param === 'object' || !param) {
             return _helpers.init.apply(this, arguments);
+        } else if (_helpers[param]) {
+            return _helpers[param].apply(this, Array.prototype.slice.call(arguments, 1));
         } else {
             $.error('Method ' + param + ' does not exist on jQuery.bgsize');
             return false;

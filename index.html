@@ -3,22 +3,29 @@
     <head>
         <title>jquery.bgsize</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/initialize.css" />
-        <link rel="stylesheet" type="text/css" href="css/demos.css" />
-        <script src="js/modernizr.custom.js"></script>
-        <script src="js/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
         <script src="js/jquery.bgsize.js"></script>
         <script>
             $(function() {
-                $('.no-backgroundsize .pic-container, .backgroundsize .pic-container.bgsize-fallback').bgsize();
+                var hasBgSizeSupport = (!('backgroundSize' in document.body.style || 'MozBackgroundSize' in document.body.style)) === false;
+                if(!hasBgSizeSupport){
+                    $('.test').bgsize(); // all elements that have background-size
+                }else{
+                    $('.test.force-fallback').bgsize(); // only the elements that we want to force to use the plugin
+                }
             });
         </script>
     </head>
     <body>
-        <div class="bgfull pic-container bgsize-fallback"></div>
+        <div class="bg1 test force-fallback"></div>
         <div class="container">
-            <h1>jQuery.bgsize Plugin</h1>
-            <p>Bringing cross-browser compatibility for background-size 'cover' and 'contain' modes</p>
+            <h1>jQuery.bgsize plugin</h1>
+            <p>
+                Bringing cross-browser compatibility for background-size 'cover' and 'contain' modes
+                <br><br>
+                <a class="btn" href="https://github.com/mjaalnir/jquery.bgsize/">Fork me on Github</a>
+            </p>
             <h2>Features</h2>
             <ul>
                 <li>Responsive</li>
@@ -26,11 +33,13 @@
                 <li>No extra markup than a JS initialization</li>
             </ul>
             <h2>CSS3 vs JS fallback</h2>
-            <div class="inl bg1 pic-container"></div>
-            <div class="inl bg1 pic-container bgsize-fallback"></div>
+            <h3>Cover:</h3>
+            <div class="bg2 test"></div>
+            <div class="bg2 test force-fallback"></div>
             <br /><br />
-            <div class="inl bg2 pic-container" data-bgsize-mode="contain"></div>
-            <div class="inl bg2 pic-container bgsize-fallback" data-bgsize-mode="contain"></div>
+            <h3>Contain:</h3>
+            <div class="bg3 test"></div>
+            <div class="bg3 test force-fallback"></div>
         </div>
     </body>
 </html>
