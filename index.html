@@ -4,21 +4,6 @@
         <title>jquery.bgsize</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/demo.css" />
-        <script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
-        <script src="js/jquery.bgsize.js"></script>
-        <script>
-            $(function() {
-                var hasBgSizeSupport = (!('backgroundSize' in document.body.style || 'MozBackgroundSize' in document.body.style)) === false;
-                if(!hasBgSizeSupport){
-                     // elements having background-size 'cover'
-                    $('.test:not(.bg3)').bgsize();
-                     // elements having background-size 'contain'
-                    $('.test.bg3').bgsize({mode:'contain'});
-                }else{
-                    $('.test.force-fallback').bgsize(); // only the elements that we want to force to use the plugin
-                }
-            });
-        </script>
     </head>
     <body>
         <div class="bg1 test force-fallback"></div>
@@ -44,5 +29,20 @@
             <div class="bg3 test"></div>
             <div class="bg3 test force-fallback"></div>
         </div>
+        <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="js/jquery.bgsize.js"></script>
+        <script>
+            $(function() {
+                var hasBgSizeSupport = (!('backgroundSize' in document.body.style || 'MozBackgroundSize' in document.body.style)) === false;
+                if(!hasBgSizeSupport){
+                     // elements having background-size 'cover'
+                    $('.test:not(.bg3)').bgsize();
+                     // elements having background-size 'contain'
+                    $('.test.bg3').bgsize({mode:'contain'});
+                }else{
+                    $('.test.force-fallback').bgsize(); // only the elements that we want to force to use the plugin
+                }
+            });
+        </script>
     </body>
 </html>
