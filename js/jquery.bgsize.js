@@ -3,8 +3,8 @@
  * jQuery.bgsize plugin
  * 
  * Version: v1.0.1
- * Author: @mjaalnir
- * Url: http://mjaalnir.github.com/jquery.bgsize/
+ * Author: @mjolnic
+ * Url: http://mjolnic.github.com/jquery.bgsize/
  */
 
 ;
