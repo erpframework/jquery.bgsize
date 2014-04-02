@@ -150,7 +150,7 @@
                 var newleft = Math.round((containerWidth - newwidth) / 2);
                 var newtop = Math.round((containerHeight - newheight) / 2);
 
-                return {"width": newwidth, "height": "auto", "left": newleft, "top": newtop};
+                return {"width": (newwidth ? newwidth : 'auto'), "height": (newheight ? newheight : 'auto'), "left": newleft, "top": newtop};
             },
             "contain": function(el) {
                 var $el = $(el);
